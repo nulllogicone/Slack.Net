@@ -16,14 +16,35 @@ appsettings.json
 
 ```json
 {
-	  "SlackUrl": "<slack post url>",
+	"SlackUrl": "<slack post url>",
 }
 ```
 Startup.cs
 
 ```cs
-        services.AddHttpClient<ISlackClient, SlackClient>(c =>
-            {
-                c.BaseAddress = new Uri(Configuration["SlackUrl"]);
-            });
+public void ConfigureServices(IServiceCollection services)
+{
+	services.AddHttpClient<ISlackClient, SlackClient>(c =>
+		{
+			c.BaseAddress = new Uri(Configuration["SlackUrl"]);
+		});
+}
+```
+Usage example in a Razor page
+
+```cs
+public class IndexModel : PageModel
+{
+    public ISlackClient slack { get; }
+
+    public IndexModel(ISlackClient slackClient)
+    {
+        slack = slackClient;
+    }
+
+    public async Task OnGetAsync()
+    {
+        await slack.SendMessageAsync("Hello").ConfigureAwait(false);
+    }
+}
 ```
