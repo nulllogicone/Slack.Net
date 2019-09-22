@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Slack.Net</PackageId>
+    <Version>1.0.1</Version>
+    <Authors>github@luchting.de</Authors>
+    <Description>Simple client to send messages to Slack</Description>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
