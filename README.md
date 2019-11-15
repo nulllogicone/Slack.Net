@@ -44,7 +44,7 @@ public class IndexModel : PageModel
 
     public async Task OnGetAsync()
     {
-        await slack.SendMessageAsync("Hello").ConfigureAwait(false);
+        await slack.SendMessageAsync("Hello");
     }
 }
 ```
